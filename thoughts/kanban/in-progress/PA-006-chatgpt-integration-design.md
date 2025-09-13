@@ -44,15 +44,22 @@ Design the conversation flow and integration patterns between ChatGPT and the Pe
 - Special endpoint to clear context on user request
 - Reactive mode (no proactive suggestions)
 
-## Design Questions to Address
+## Design Decisions ✅
 
-1. **Second Brain Naming**: What natural name for knowledge agent?
-2. **API Response Format**: Structure for confirmations/clarifications
-3. **Context Scope**: How much history to maintain?
-4. **Error Handling**: How to handle agent failures gracefully?
-5. **Action Confirmation**: Which actions need explicit confirmation?
-6. **Sub-Agent Routing**: Natural language patterns for each agent
-7. **State Persistence**: How to maintain context across API restarts?
+1. **Agent Names** (Tensura themed):
+   - **Diablo**: Claude Code orchestrator
+   - **Souei**: Tmux intelligence & command
+   - **Raphael**: Knowledge/second brain
+   - **Shuna**: Time/ROI management
+
+2. **API Response Format**: Structured JSON with agent/action/result/data
+3. **Context Scope**: Last 10 exchanges per agent, 1-hour timeout
+4. **Error Handling**: Via result field and human-readable messages
+5. **Action Confirmation**: Write ops for Souei, spawning for Diablo
+6. **Sub-Agent Routing**: Natural language patterns documented
+7. **State Persistence**: thoughts/orchestrator/context.json (1MB rotating)
+
+**Decision documented in**: thoughts/kanban/decisions/2025-01-13-chatgpt-integration-architecture.md
 
 ## Technical Requirements
 - OpenAPI spec for ChatGPT Actions

@@ -1,0 +1,309 @@
+openapi: 3.0.0
+info:
+  title: Personal Assistant API
+  description: LLM-powered orchestrator for local development environment
+  version: 1.0.0
+servers:
+  - url: https://b.mlkv.org:11111
+    description: Production server
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /orchestrate:
+    post:
+      summary: Main orchestration endpoint for Diablo
+      operationId: orchestrate
+      description: Routes requests to appropriate agents and maintains context
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  description: Natural language request from ChatGPT
+                context_id:
+                  type: string
+                  description: Optional context session ID
+      responses:
+        '200':
+          description: Successful orchestration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentResponse'
+
+  /agents/souei:
+    get:
+      summary: List tmux sessions
+      operationId: listTmuxSessions
+      description: Souei reports on all active tmux sessions
+      responses:
+        '200':
+          description: List of tmux sessions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SoueiSessionList'
+
+    post:
+      summary: Send command to tmux session
+      operationId: sendTmuxCommand
+      description: Souei executes command in specified session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - session
+                - command
+              properties:
+                session:
+                  type: string
+                  description: Tmux session name
+                command:
+                  type: string
+                  description: Command to execute
+                confirm:
+                  type: boolean
+                  default: true
+                  description: Whether to require confirmation
+      responses:
+        '200':
+          description: Command result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentResponse'
+
+  /agents/raphael:
+    get:
+      summary: Query knowledge base
+      operationId: queryKnowledge
+      description: Raphael searches the second brain
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query
+      responses:
+        '200':
+          description: Knowledge search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RaphaelKnowledge'
+
+    post:
+      summary: Store knowledge
+      operationId: storeKnowledge
+      description: Raphael saves information to second brain
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - content
+                - tags
+              properties:
+                content:
+                  type: string
+                  description: Knowledge to store
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  description: Tags for categorization
+      responses:
+        '200':
+          description: Storage confirmation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentResponse'
+
+  /agents/shuna:
+    get:
+      summary: Get time/ROI metrics
+      operationId: getTimeMetrics
+      description: Shuna provides time tracking and ROI analysis
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+          description: Optional project filter
+        - name: period
+          in: query
+          schema:
+            type: string
+            enum: [today, week, month]
+            default: today
+          description: Time period for metrics
+      responses:
+        '200':
+          description: Time and ROI metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShunaMetrics'
+
+  /context:
+    get:
+      summary: Get current conversation context
+      operationId: getContext
+      description: Retrieve Diablo's maintained context
+      parameters:
+        - name: context_id
+          in: query
+          schema:
+            type: string
+          description: Context session ID
+      responses:
+        '200':
+          description: Current context
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  context_id:
+                    type: string
+                  agents:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: object
+                  last_active:
+                    type: string
+                    format: date-time
+
+    delete:
+      summary: Clear conversation context
+      operationId: clearContext
+      description: Reset Diablo's conversation memory
+      parameters:
+        - name: context_id
+          in: query
+          schema:
+            type: string
+          description: Context session ID to clear
+      responses:
+        '204':
+          description: Context cleared
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+  schemas:
+    AgentResponse:
+      type: object
+      required:
+        - agent
+        - action
+        - result
+        - message
+      properties:
+        agent:
+          type: string
+          enum: [diablo, souei, raphael, shuna]
+          description: Responding agent
+        action:
+          type: string
+          enum: [query, execute, confirm]
+          description: Action performed
+        result:
+          type: string
+          enum: [success, pending, needs_confirmation, error]
+          description: Action result
+        data:
+          type: object
+          description: Agent-specific response data
+        message:
+          type: string
+          description: Human-readable message for ChatGPT
+        next_actions:
+          type: array
+          items:
+            type: string
+          description: Suggested follow-up actions
+        context_id:
+          type: string
+          description: Session context ID
+
+    SoueiSessionList:
+      type: object
+      properties:
+        sessions:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              windows:
+                type: integer
+              attached:
+                type: boolean
+              created:
+                type: string
+              activity:
+                type: string
+
+    RaphaelKnowledge:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              content:
+                type: string
+              tags:
+                type: array
+                items:
+                  type: string
+              created:
+                type: string
+              relevance:
+                type: number
+
+    ShunaMetrics:
+      type: object
+      properties:
+        period:
+          type: string
+        total_time:
+          type: number
+          description: Total hours tracked
+        projects:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              time:
+                type: number
+              roi:
+                type: number
+              value_delivered:
+                type: string
