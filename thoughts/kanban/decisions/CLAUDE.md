@@ -9,3 +9,8 @@ Each decision gets a file: `YYYY-MM-DD-{topic}.md`
 **Choice**: Bun + Elysia
 **Reason**: Bun-native performance, batteries included, opinionated
 **File**: [2025-09-13-runtime-framework.md](./2025-09-13-runtime-framework.md)
+
+### 2025-09-13: SSL Certificate Strategy
+**Choice**: Let's Encrypt + certbot
+**Reason**: Free, trusted, Elysia native SSL support
+**File**: [2025-09-13-ssl-certificate.md](./2025-09-13-ssl-certificate.md)
