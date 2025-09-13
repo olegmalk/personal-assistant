@@ -26,7 +26,6 @@
 - **Domain**: b.mlkv.org:11111
 - **API Key**: Stored in .env (256-bit secure)
 - **Architecture**: Single orchestrator endpoint `/api/agent`
-- **PM2**: Running as user vmuser with 3 services total
 
 ## 🔄 Archive Routine
 When this section gets too large (>20 items), move completed items older than 7 days to `thoughts/kanban/archive/YYYY-MM-archive.md`
