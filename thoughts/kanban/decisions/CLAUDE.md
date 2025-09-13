@@ -14,3 +14,8 @@ Each decision gets a file: `YYYY-MM-DD-{topic}.md`
 **Choice**: Let's Encrypt + certbot
 **Reason**: Free, trusted, Elysia native SSL support
 **File**: [2025-09-13-ssl-certificate.md](./2025-09-13-ssl-certificate.md)
+
+### 2025-09-13: Claude Code SDK Language
+**Choice**: TypeScript SDK
+**Reason**: Type safety, stack alignment, built-in context management
+**File**: [2025-09-13-claude-sdk-selection.md](./2025-09-13-claude-sdk-selection.md)
