@@ -10,7 +10,8 @@ const app = new Elysia()
   .post('/api/agent', ({ body, headers }) => {
     // Check API key
     const apiKey = headers['x-api-key']
-    if (apiKey !== 'test-key-123') {
+    const validKey = process.env.API_KEY || Bun.env.API_KEY
+    if (!apiKey || apiKey !== validKey) {
       return new Response('Unauthorized', { status: 401 })
     }
 
