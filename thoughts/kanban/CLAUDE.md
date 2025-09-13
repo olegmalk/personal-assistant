@@ -1,5 +1,14 @@
 # Personal Assistant Kanban Workflow
 
+## Active Memory
+**ACTIVE_MEMORY.md** maintains session continuity:
+- Current focus and context
+- Recently completed work (7-day window)
+- Trajectory for next steps
+- Archive older items to `archive/YYYY-MM-archive.md`
+
+Check at session start, update at session end.
+
 ## Ticket States
 - **backlog**: Ideas and future work not ready to start
 - **todo**: Ready to implement, requirements clear
