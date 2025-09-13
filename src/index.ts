@@ -23,8 +23,8 @@ const app = new Elysia()
   .listen({
     port: 11111,
     tls: {
-      cert: Bun.file('/etc/letsencrypt/live/mlkv.org/fullchain.pem'),
-      key: Bun.file('/etc/letsencrypt/live/mlkv.org/privkey.pem')
+      cert: Bun.file('/home/vmuser/dev/personal-assistant/certs/fullchain.pem'),
+      key: Bun.file('/home/vmuser/dev/personal-assistant/certs/privkey.pem')
     }
   })
 
