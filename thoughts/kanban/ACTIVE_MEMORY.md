@@ -1,7 +1,7 @@
 # Active Memory - Personal Assistant Project
 
-**Last Updated**: 2025-09-13
-**Session Focus**: Infrastructure setup and API foundation
+**Last Updated**: 2025-09-14
+**Session Focus**: ChatGPT integration design and architecture refinement
 
 ## 🎯 Current Focus
 - PA-006 ChatGPT integration design - DONE
@@ -20,10 +20,14 @@
 - [x] **2025-09-13**: Discovered SDK works with Max subscription (no API key needed!)
 - [x] **2025-09-13**: Established external docs pattern in docs/external/
 - [x] **2025-09-13**: Updated all agents with documentation requirements
-- [x] **2025-01-13**: Designed ChatGPT integration architecture with Tensura agents
-- [x] **2025-01-13**: Created agent prompts (Diablo, Souei, Raphael, Shuna)
-- [x] **2025-01-13**: Defined natural language API interface
-- [x] **2025-01-13**: Updated OpenAPI spec for ChatGPT Actions
+- [x] **2025-09-13**: Designed ChatGPT integration architecture with Tensura agents
+- [x] **2025-09-13**: Created agent prompts (Diablo, Souei, Raphael, Shuna)
+- [x] **2025-09-13**: Defined natural language API interface
+- [x] **2025-09-13**: Updated OpenAPI spec for ChatGPT Actions
+- [x] **2025-09-14**: Refined all agent prompts (removed confusing examples)
+- [x] **2025-09-14**: Added Souei multi-round conversation & notification capabilities
+- [x] **2025-09-14**: Clarified Raphael scope (no troubleshooting/observability)
+- [x] **2025-09-14**: Consolidated backlog tickets (one per agent)
 
 ## 🚀 Trajectory (Next Steps)
 1. **Immediate**: Implement Diablo orchestrator endpoint

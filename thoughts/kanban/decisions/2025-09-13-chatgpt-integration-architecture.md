@@ -1,6 +1,6 @@
 # ChatGPT Integration Architecture Decision
 
-**Date**: 2025-01-13
+**Date**: 2025-09-13
 **Status**: Approved
 **Ticket**: PA-006
 

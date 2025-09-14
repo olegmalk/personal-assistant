@@ -20,7 +20,7 @@ Each decision gets a file: `YYYY-MM-DD-{topic}.md`
 **Reason**: Type safety, stack alignment, built-in context management
 **File**: [2025-09-13-claude-sdk-selection.md](./2025-09-13-claude-sdk-selection.md)
 
-### 2025-01-13: ChatGPT Integration Architecture
+### 2025-09-13: ChatGPT Integration Architecture
 **Choice**: Agent-based architecture with Tensura naming
 **Reason**: Clear responsibilities, memorable names, natural conversation flow
-**File**: [2025-01-13-chatgpt-integration-architecture.md](./2025-01-13-chatgpt-integration-architecture.md)
+**File**: [2025-09-13-chatgpt-integration-architecture.md](./2025-09-13-chatgpt-integration-architecture.md)
