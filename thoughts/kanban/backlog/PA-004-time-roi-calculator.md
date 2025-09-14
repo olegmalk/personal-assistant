@@ -1,20 +1,31 @@
 ---
 id: PA-004
-title: Time ROI calculator for free hours
+title: Implement Shuna's time tracking and ROI analysis
 priority: medium
-agent: time
+agent: shuna
 created: 2025-09-13
+updated: 2025-01-14
 ---
 
 ## Description
-Calculate available free time and ROI for activities
+Implement the time tracking and ROI calculation system that Shuna needs to analyze time investments and returns.
 
 ## Requirements
-- Define work/sleep/routine hours
-- Calculate free time slots
-- Identify commute time (driving)
-- ROI scoring for activities
-- Integration with calendar data
+- Track time spent on different activities/projects
+- Calculate ROI for time investments
+- Identify high-value vs low-value activities
+- Provide optimization recommendations
+- Support multiple project tracking
+- Generate time/value reports
 
-## Notes
-Focus on identifying available hours first
+## Context
+- Part of Shuna's implementation
+- Helps users understand where time is best spent
+- Data-driven decision support
+- Focus on measurable returns
+
+## Technical Notes
+- Time tracking database/storage
+- ROI calculation algorithms
+- Integration with project metadata
+- Report generation capability
