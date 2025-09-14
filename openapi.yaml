@@ -28,9 +28,6 @@ paths:
                 message:
                   type: string
                   description: Natural language request from ChatGPT
-                context_id:
-                  type: string
-                  description: Optional context session ID
       responses:
         '200':
           description: Successful orchestration
@@ -165,12 +162,6 @@ paths:
       summary: Get current conversation context
       operationId: getContext
       description: Retrieve Diablo's maintained context
-      parameters:
-        - name: context_id
-          in: query
-          schema:
-            type: string
-          description: Context session ID
       responses:
         '200':
           description: Current context
@@ -179,8 +170,6 @@ paths:
               schema:
                 type: object
                 properties:
-                  context_id:
-                    type: string
                   agents:
                     type: object
                     additionalProperties:
@@ -195,12 +184,6 @@ paths:
       summary: Clear conversation context
       operationId: clearContext
       description: Reset Diablo's conversation memory
-      parameters:
-        - name: context_id
-          in: query
-          schema:
-            type: string
-          description: Context session ID to clear
       responses:
         '204':
           description: Context cleared
@@ -244,9 +227,6 @@ components:
           items:
             type: string
           description: Suggested follow-up actions
-        context_id:
-          type: string
-          description: Session context ID
 
     SoueiSessionList:
       type: object
