@@ -1,5 +1,5 @@
 ---
-id: PA-005
+id: PA-004
 title: Implement Diablo orchestrator endpoint
 priority: high
 agent: diablo

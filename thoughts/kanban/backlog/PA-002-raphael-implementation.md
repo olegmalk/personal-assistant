@@ -1,5 +1,5 @@
 ---
-id: PA-003
+id: PA-002
 title: Implement Raphael's knowledge storage system
 priority: medium
 agent: raphael
