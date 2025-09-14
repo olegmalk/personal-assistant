@@ -4,9 +4,9 @@
 **Session Focus**: Infrastructure setup and API foundation
 
 ## 🎯 Current Focus
-- Vision and architecture definition
-- Claude Code SDK integration planning
-- Documentation patterns establishment
+- ChatGPT integration design (PA-006) - COMPLETED
+- Ready for Diablo orchestrator implementation
+- Agent prompts documented and ready
 
 ## ✅ Recently Completed (Last 7 Days)
 - [x] **2025-09-13**: Git repository initialized
@@ -20,12 +20,16 @@
 - [x] **2025-09-13**: Discovered SDK works with Max subscription (no API key needed!)
 - [x] **2025-09-13**: Established external docs pattern in docs/external/
 - [x] **2025-09-13**: Updated all agents with documentation requirements
+- [x] **2025-01-13**: Designed ChatGPT integration architecture with Tensura agents
+- [x] **2025-01-13**: Created agent prompts (Diablo, Souei, Raphael, Shuna)
+- [x] **2025-01-13**: Defined natural language API interface
+- [x] **2025-01-13**: Updated OpenAPI spec for ChatGPT Actions
 
 ## 🚀 Trajectory (Next Steps)
-1. **Immediate**: Refine tickets in backlog with new vision context
-2. **Next Session**: Design ChatGPT integration patterns (PA-006)
-3. **Following**: Implement Personal Assistant orchestrator with Claude Code SDK
-4. **Then**: Build tmux agents (PA-001, PA-002)
+1. **Immediate**: Implement Diablo orchestrator endpoint
+2. **Next**: Set up Claude Code SDK for agent instances
+3. **Following**: Create Souei instances for tmux sessions
+4. **Then**: Test ChatGPT integration end-to-end
 
 ## 📝 Context Notes
 - **Domain**: b.mlkv.org:11111
@@ -33,6 +37,8 @@
 - **Architecture**: LLM orchestrator with persistent context
 - **Claude Code SDK**: Uses Max subscription, no API key needed
 - **Documentation**: External libs must be documented in docs/external/
+- **Agents**: Diablo (orchestrator), Souei (tmux), Raphael (knowledge), Shuna (time/ROI)
+- **API Design**: Single natural /chat endpoint, YAML context storage
 
 ## 🔄 Archive Routine
 When this section gets too large (>20 items), move completed items older than 7 days to `thoughts/kanban/archive/YYYY-MM-archive.md`
