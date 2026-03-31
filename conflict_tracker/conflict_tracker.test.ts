@@ -1,8 +1,11 @@
-import { test, expect, describe } from "bun:test";
+import { test, expect, describe, mock } from "bun:test";
 import { dedup } from "./dedup";
 import { detectTransitions } from "./transitions";
 import { formatDailyState } from "./formatter";
 import type { ConflictEvent, DailyState } from "./schema";
+
+// ACLED client is tested via integration (needs API key),
+// but we test the merge path through dedup
 
 const makeEvent = (overrides: Partial<ConflictEvent> = {}): ConflictEvent => ({
   date: "2026-03-28",
@@ -69,6 +72,27 @@ describe("detectTransitions", () => {
     );
     const transitions = detectTransitions(events);
     expect(transitions.some((t) => t.type === "escalation")).toBe(true);
+  });
+});
+
+describe("dedup cross-source", () => {
+  test("ACLED high-confidence wins over GDELT medium", () => {
+    const events = [
+      makeEvent({ source: "gdelt", confidence: "medium", actor: "iran", target: "israel" }),
+      makeEvent({ source: "acled", confidence: "high", actor: "iran", target: "israel", fatalities: 5 }),
+    ];
+    const result = dedup(events);
+    expect(result).toHaveLength(1);
+    expect(result[0]!.source).toBe("acled");
+  });
+
+  test("merges events from different sources with different keys", () => {
+    const events = [
+      makeEvent({ source: "gdelt", actor: "us", target: "iran", action: "strike" }),
+      makeEvent({ source: "acled", actor: "yemen_proxy", target: "israel", action: "strike" }),
+    ];
+    const result = dedup(events);
+    expect(result).toHaveLength(2);
   });
 });
 
